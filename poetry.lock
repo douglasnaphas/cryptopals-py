@@ -1,7 +1,14 @@
-package = []
+[[package]]
+category = "main"
+description = "Parameterized testing with any Python test framework"
+name = "parameterized"
+optional = false
+python-versions = "*"
+version = "0.7.1"
 
 [metadata]
-content-hash = "669741988c507fb04697bdb0c9077fa1b2342c356df6ae6c96baa3119a96a9ea"
+content-hash = "ed64a2c2072738c1fd4023b6610dd46a7cca6d8011809e637c858a18665ae1c5"
 python-versions = "^3.7"
 
 [metadata.hashes]
+parameterized = ["6a94dbea30c6abde99fd4c2f2042c1bf7f980e48908bf92ead62394f93cf57ed", "ea0326ba5bbbe7c427329a27b75003410df07d1173ca254976f8f5a64922c322"]
