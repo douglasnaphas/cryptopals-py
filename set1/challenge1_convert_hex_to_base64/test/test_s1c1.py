@@ -23,6 +23,8 @@ class TestCanary(unittest.TestCase):
           "RGVhZGx5LCB3aGVuIEkgaGVhciBhIGRvcGUgbWVsb2R5" ),
         ( "416e797468696e67206c657373207468616e20746865206265737420697320612066656c6f6e79",
           "QW55dGhpbmcgbGVzcyB0aGFuIHRoZSBiZXN0IGlzIGEgZmVsb255" ),
+        ( "0",
+          "AA==" ),
     ])
     def test_p(self, hx, expected):
         self.assertEqual(S1C1.hex_to_base64(hx), expected)

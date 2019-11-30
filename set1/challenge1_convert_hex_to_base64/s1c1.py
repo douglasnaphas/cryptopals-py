@@ -11,5 +11,7 @@ class S1C1():
         hx_str = '0x' + hx
         n = int(hx_str, 16)
         num_bytes = math.ceil(n.bit_length() / 8)
+        if num_bytes == 0:
+            num_bytes = 1
         b = (n).to_bytes(num_bytes, 'big')
         return str(base64.b64encode(b))[2:-1]
