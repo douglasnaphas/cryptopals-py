@@ -8,5 +8,3 @@ class TestCanary(unittest.TestCase):
     def test_import(self):
         self.assertTrue(S1C1.ret_true())
 
-    def test_fail(self):
-        self.assertTrue(False)
