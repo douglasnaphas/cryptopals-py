@@ -2,7 +2,7 @@ import unittest
 from set1.challenge1_convert_hex_to_base64.s1c1 import S1C1
 from parameterized import parameterized
 
-class TestCanary(unittest.TestCase):
+class TestS1C1(unittest.TestCase):
     def test_succeed(self):
         self.assertTrue(True)
 
@@ -28,5 +28,5 @@ class TestCanary(unittest.TestCase):
         ( "1",
           "AQ==" ),
     ])
-    def test_p(self, hx, expected):
+    def test_hex_to_base64(self, hx, expected):
         self.assertEqual(S1C1.hex_to_base64(hx), expected)
