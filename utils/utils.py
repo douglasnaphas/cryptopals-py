@@ -1,4 +1,7 @@
 import math
+import numpy
+import string
+from collections import Counter
 
 class Utils():
     
@@ -28,3 +31,14 @@ class Utils():
     # something based on
     # functools.reduce(lambda beg, inc : beg + ord(inc), 'abcdefghijklmnopqrstuvwxyz', 0)
     # and ascii_lowercase
+
+    @staticmethod
+    def str2ltrv(s):
+        """"String to letter vector
+        """
+        if not isinstance(s, str):
+            raise Exception("str2ltrv: input must be a string")
+        d = dict(Counter(str.lower(s)).items())
+        alpha = list(string.ascii_lowercase)
+        v = list(map(lambda ltr : d.get(ltr, 0), alpha))
+        return numpy.array(v)
