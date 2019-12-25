@@ -38,7 +38,9 @@ class Utils():
         """
         if not isinstance(s, str):
             raise Exception("str2ltrv: input must be a string")
+        if len(s) == 0:
+            return numpy.array([0] * 26)
         d = dict(Counter(str.lower(s)).items())
         alpha = list(string.ascii_lowercase)
-        v = list(map(lambda ltr : d.get(ltr, 0), alpha))
+        v = list(map(lambda ltr : d.get(ltr, 0) / len(s), alpha))
         return numpy.array(v)

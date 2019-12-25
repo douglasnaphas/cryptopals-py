@@ -13,9 +13,13 @@ class TestNby(unittest.TestCase):
 
 class TestStr2Ltrv(unittest.TestCase):
     @parameterized.expand([
-        ('a', numpy.array([1] + [0] * 25)),
-        ('ab', numpy.array([1] * 2 + [0] * 24)),
-        ('zbaacccccb', numpy.array([2] * 2 + [5] + [0] * 22 + [1]))
+        ('a', numpy.array([1 / 1] + [0] * 25)),
+        ('ab', numpy.array([1 / 2] * 2 + [0] * 24)),
+        ('zbaacccccb', numpy.array([2 / 10] * 2 +
+                                   [5 / 10] +
+                                   [0] * 22 +
+                                   [1 / 10])),
+        ('', numpy.array([0] * 26))
     ])
     def test_str2ltrv(self, s, expected):
         self.assertTrue(numpy.array_equal(Utils.str2ltrv(s), expected))
