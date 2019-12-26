@@ -2,6 +2,7 @@ import unittest
 from parameterized import parameterized
 from utils.utils import Utils
 import numpy
+import functools
 
 class TestNby(unittest.TestCase):
     @parameterized.expand([
@@ -25,9 +26,7 @@ class TestStr2Ltrv(unittest.TestCase):
         self.assertTrue(numpy.array_equal(Utils.str2ltrv(s), expected))
 
 class TestScoreEnglish(unittest.TestCase):
-    @parameterized.expand([('a', 0)])
-    def test_score_english(self, s, expected):
-
+    def test_score_english(self):
         common_f = [
             ('a', 0.08167),
             ('b', 0.01492),
@@ -56,4 +55,11 @@ class TestScoreEnglish(unittest.TestCase):
             ('y', 0.01994),
             ('z', 0.00077)
         ]
+        s = ''
+        s = functools.reduce(lambda beg, inc : beg + inc[0] * int(inc[1] * 100000),
+                             common_f,
+                             '')
+        expected = 0
+
         self.assertEqual(Utils.score_english(s), expected)
+        
