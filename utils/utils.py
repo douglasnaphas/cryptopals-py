@@ -18,19 +18,56 @@ class Utils():
             return 1
         return math.ceil(n.bit_length() / 8)
 
-    @staticmethod
-    def score_english(txt):
+    @classmethod
+    def score_english(cls, txt):
         """Return the Euclidean distance between txt and a vector representing
         the frequency of characters in English.
 
         Positional argument:
         txt -- The string to score.
         """
-        return 0
+        common_f = [
+            ('a', .08129 ),
+            ('b', .01485 ),
+            ('c', .02192 ),
+            ('d', .04233 ),
+            ('e', .12646 ),
+            ('f', .02218 ),
+            ('g', .02006 ),
+            ('h', .06066 ),
+            ('i', .06934 ),
+            ('j', .00152 ),
+            ('k', .01286 ),
+            ('l', .04006 ),
+            ('m', .02395 ),
+            ('n', .06718 ),
+            ('o', .07472 ),
+            ('p', .0192  ),
+            ('q', .00095 ),
+            ('r', .05959 ),
+            ('s', .06298 ),
+            ('t', .09313 ),
+            ('u', .02745 ),
+            ('v', .00973 ),
+            ('w', .02548 ),
+            ('x', .00149 ),
+            ('y', .01985 ),
+            ('z', .00077 ),
+        ]
+        v = numpy.array(list(map(lambda t: t[1], common_f)))
+        print(cls.str2ltrv(txt))
+        
+        return numpy.linalg.norm(cls.str2ltrv(txt) - v)
 
     # something based on
     # functools.reduce(lambda beg, inc : beg + ord(inc), 'abcdefghijklmnopqrstuvwxyz', 0)
     # and ascii_lowercase
+
+
+# function that gets the distance between two letter vectors, test with easy vectors
+
+# function that calls ^^^ with arg and common_f, use mocking to test that ^^^
+# was called with the right args
 
     @staticmethod
     def str2ltrv(s):

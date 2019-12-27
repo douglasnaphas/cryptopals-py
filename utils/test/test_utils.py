@@ -28,38 +28,47 @@ class TestStr2Ltrv(unittest.TestCase):
 class TestScoreEnglish(unittest.TestCase):
     def test_score_english(self):
         common_f = [
-            ('a', 0.08167),
-            ('b', 0.01492),
-            ('c', 0.02202),
-            ('d', 0.04253),
-            ('e', 0.12702),
-            ('f', 0.02228),
-            ('g', 0.02015),
-            ('h', 0.06094),
-            ('i', 0.06966),
-            ('j', 0.00153),
-            ('k', 0.01292),
-            ('l', 0.04025),
-            ('m', 0.02406),
-            ('n', 0.06749),
-            ('o', 0.07507),
-            ('p', 0.01929),
-            ('q', 0.00095),
-            ('r', 0.05987),
-            ('s', 0.06327),
-            ('t', 0.09356),
-            ('u', 0.02758),
-            ('v', 0.00978),
-            ('w', 0.0256),
-            ('x', 0.0015),
-            ('y', 0.01994),
-            ('z', 0.00077)
+            ('a', .08129 ),
+            ('b', .01485 ),
+            ('c', .02192 ),
+            ('d', .04233 ),
+            ('e', .12646 ),
+            ('f', .02218 ),
+            ('g', .02006 ),
+            ('h', .06066 ),
+            ('i', .06934 ),
+            ('j', .00152 ),
+            ('k', .01286 ),
+            ('l', .04006 ),
+            ('m', .02395 ),
+            ('n', .06718 ),
+            ('o', .07472 ),
+            ('p', .0192  ),
+            ('q', .00095 ),
+            ('r', .05959 ),
+            ('s', .06298 ),
+            ('t', .09313 ),
+            ('u', .02745 ),
+            ('v', .00973 ),
+            ('w', .02548 ),
+            ('x', .00149 ),
+            ('y', .01985 ),
+            ('z', .00077 ),
         ]
-        s = ''
-        s = functools.reduce(lambda beg, inc : beg + inc[0] * int(inc[1] * 100000),
+        scale_factor = 10000
+        denom = functools.reduce(lambda beg, inc : beg + inc[1] * scale_factor,
+                                 common_f,
+                                 0)
+        s = functools.reduce(lambda beg, inc : beg + inc[0] * int(inc[1] * scale_factor),
                              common_f,
                              '')
         expected = 0
-
+        error_margin = .001
+        score = Utils.score_english(s)
+        self.assertTrue(abs(score - expected)  < error_margin)
+        s = functools.reduce(lambda beg, inc : beg + inc[0] * int(inc[1] * scale_factor),
+                             common_f,
+                             'v')
+        expected = 1
         self.assertEqual(Utils.score_english(s), expected)
         
