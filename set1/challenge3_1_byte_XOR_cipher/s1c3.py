@@ -57,7 +57,22 @@ def main():
         print(k, ' : ', v)
     g = {k : bytes.fromhex(v).decode('utf-8') for k, v in e.items()}
     # exclude anything in the 
-
+    print("new approach...")
+    loscore = 100
+    lokey = 'nothing'
+    loval = 'nothing'
+    for k, v in g.items():
+        try:
+            score = Utils.score_english(v)
+            if score < 0.24:
+                print(k, " : ", score, " : ", v)
+            if score < loscore:
+                loscore = score
+                lokey = k
+                loval = v
+        except:
+            pass
+    print(lokey, " : ", loscore, " : ", loval)
 
 #    h = {k : Utils.score_english(v) for k, v in g.items()}
 #    for k, v in h.items():
