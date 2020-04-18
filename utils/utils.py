@@ -10,6 +10,9 @@ class Utils():
     def nby(n):
         """Return the number of bytes (>=1) to represent int n.
 
+        ex: 255 -> 1
+            256 -> 2
+
         Throw on non-int n.
         
         Positional argument:
@@ -71,6 +74,7 @@ class Utils():
     @staticmethod
     def str2ltrv(s):
         """"String to letter vector
+        ex: 'babB' -> [1, 3, 0, 0, 0, ... ]
         """
         if not isinstance(s, str):
             raise Exception("str2ltrv: input must be a string")
@@ -86,3 +90,16 @@ class Utils():
         )
         v = list(map(lambda ltr : d.get(ltr, 0) / denom, alpha))
         return numpy.array(v)
+
+    @staticmethod
+    def hexstr2num(hexstr):
+        """Convert an un-prefixed hex string like '1d2A' into a number like 7466
+        ex: '1dA' -> 474
+        """
+        return int('0x' + str(hexstr), 16)
+
+    @staticmethod
+    def num2ascii(num):
+        """Convert a decimal number like 74
+        """
+        pass

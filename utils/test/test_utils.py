@@ -80,3 +80,11 @@ class TestScoreEnglish(unittest.TestCase):
                              'v')
         worse_score = Utils.score_english(s_plus_v)
         self.assertTrue(worse_score > score)
+
+class TestHexstr2num(unittest.TestCase):
+    @parameterized.expand([
+        ('1d2A', 7466),
+        ('1dA', 474)
+    ])
+    def test_hexstr2num(self, hexstr, expected):
+        self.assertEqual(Utils.hexstr2num(hexstr), expected)
