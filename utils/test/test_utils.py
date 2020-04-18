@@ -55,7 +55,7 @@ class TestScoreEnglish(unittest.TestCase):
             ('y', .01985 ),
             ('z', .00077 ),
         ]
-        scale_factor = 10000
+        scale_factor = 100000
         denom = functools.reduce(lambda beg, inc : beg + inc[1] * scale_factor,
                                  common_f,
                                  0)
@@ -63,12 +63,11 @@ class TestScoreEnglish(unittest.TestCase):
                              common_f,
                              '')
         expected = 0
-        error_margin = .001
+        error_margin = .0001
         score = Utils.score_english(s)
         self.assertTrue(abs(score - expected)  < error_margin)
-        s = functools.reduce(lambda beg, inc : beg + inc[0] * int(inc[1] * scale_factor),
+        s_plus_v = functools.reduce(lambda beg, inc : beg + inc[0] * int(inc[1] * scale_factor),
                              common_f,
                              'v')
-        expected = 1
-        self.assertEqual(Utils.score_english(s), expected)
-        
+        worse_score = Utils.score_english(s_plus_v)
+        self.assertTrue(worse_score > score)

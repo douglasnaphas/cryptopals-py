@@ -55,8 +55,6 @@ class Utils():
             ('z', .00077 ),
         ]
         v = numpy.array(list(map(lambda t: t[1], common_f)))
-        print(cls.str2ltrv(txt))
-        
         return numpy.linalg.norm(cls.str2ltrv(txt) - v)
 
     # something based on
