@@ -2,6 +2,7 @@ import math
 import numpy
 import string
 from collections import Counter
+import functools
 
 class Utils():
     
@@ -75,7 +76,13 @@ class Utils():
             raise Exception("str2ltrv: input must be a string")
         if len(s) == 0:
             return numpy.array([0] * 26)
-        d = dict(Counter(str.lower(s)).items())
+        lowers = str.lower(s)
+        d = dict(Counter(lowers).items())
         alpha = list(string.ascii_lowercase)
-        v = list(map(lambda ltr : d.get(ltr, 0) / len(s), alpha))
+        denom = functools.reduce(
+            lambda beg, inc : (beg + 1) if inc.islower() else beg,
+            lowers,
+            0
+        )
+        v = list(map(lambda ltr : d.get(ltr, 0) / denom, alpha))
         return numpy.array(v)

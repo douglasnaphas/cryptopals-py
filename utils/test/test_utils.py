@@ -25,6 +25,15 @@ class TestStr2Ltrv(unittest.TestCase):
     def test_str2ltrv(self, s, expected):
         self.assertTrue(numpy.array_equal(Utils.str2ltrv(s), expected))
 
+    @parameterized.expand([
+        ('x', 'x'),
+        ('x', 'x '),
+        ('Something with upper- and lower-case...AND punctuation!!! #string',
+         'somethingwithupperandlowercaseandpunctuationstring')
+    ])
+    def test_str2ltrv_non_letter(self, a, b):
+        self.assertTrue(numpy.array_equal(Utils.str2ltrv(a), Utils.str2ltrv(b)))
+
 class TestScoreEnglish(unittest.TestCase):
     def test_score_english(self):
         common_f = [
