@@ -172,3 +172,31 @@ class Utils():
                 enumerate([''.join(x) for x in zip(s[0::2], s[1::2])])
             ]
             )
+    
+    @classmethod
+    def decrypt_1_byte_XOR(cls, ctext):
+        """Decrypt a hex-encoded string encrypted with a single-byte XOR
+
+        Example:
+        # From https://cryptopals.com/sets/1/challenges/3
+        decrypt_1_byte_XOR('1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736')
+        (88, 'X', 0.22531424758579757, 'Cooking MC\'s like a pound of bacon')
+        """
+        # get the set of possible key characters (one character each)
+        FIRST_PRINTABLE_DEC = 32
+        LAST_PRINTABLE_DEC = 126
+        candidate_chars = set(range(FIRST_PRINTABLE_DEC, LAST_PRINTABLE_DEC + 1))
+        e = {cc : cls.repeated_XOR(ctext, chr(cc)) for cc in candidate_chars}
+        loscore = 100
+        lokey = 'nothing'
+        loval = 'nothing'
+        for k, v in e.items():
+            try:
+                score = cls.score_english(v, True)
+                if score < loscore:
+                    loscore = score
+                    lokey = k
+                    loval = v
+            except:
+                pass
+        return (lokey, chr(lokey), loscore, loval)

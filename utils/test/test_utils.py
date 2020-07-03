@@ -158,3 +158,11 @@ class TestRepeatedXOR(unittest.TestCase):
     ])
     def test_repeated_XOR(self, s, k, expected):
         self.assertEqual(Utils.repeated_XOR(s, k), expected)
+
+class TestDecrypt1ByteXOR(unittest.TestCase):
+    @parameterized.expand([
+        ('1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736',
+        (88, 'X', 0.22531424758579757, 'Cooking MC\'s like a pound of bacon'))
+    ])
+    def test_decrypt_1_byte_XOR(self, ctext, expected):
+        self.assertEqual(Utils.decrypt_1_byte_XOR(ctext), expected)
