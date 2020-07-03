@@ -177,6 +177,12 @@ class Utils():
     def decrypt_1_byte_XOR(cls, ctext):
         """Decrypt a hex-encoded string encrypted with a single-byte XOR
 
+        Return a tuple containing:
+        - the ASCII code point of the key
+        - the key
+        - the score (lower is better) of the winning key
+        - the message decrypted using the winning key
+
         Example:
         # From https://cryptopals.com/sets/1/challenges/3
         decrypt_1_byte_XOR('1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736')
