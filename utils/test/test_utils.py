@@ -94,7 +94,8 @@ class TestRepeatedXOR(unittest.TestCase):
         ('', '', ''),
         ('1b', 'X', 'C'),
         ('1b373733', 'X', 'Cook'),
-        ('1b373733', 'XX', 'Cook')
+        ('1b373733', 'XX', 'Cook'),
+        ('1b373733', 'Xy', 'CNoJ'),
     ])
     def test_repeated_XOR(self, s, k, expected):
         self.assertEqual(Utils.repeated_XOR(s, k), expected)
