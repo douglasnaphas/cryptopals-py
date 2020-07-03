@@ -88,3 +88,12 @@ class TestHexstr2num(unittest.TestCase):
     ])
     def test_hexstr2num(self, hexstr, expected):
         self.assertEqual(Utils.hexstr2num(hexstr), expected)
+
+class TestRepeatedXOR(unittest.TestCase):
+    @parameterized.expand([
+        ('', '', ''),
+        ('1b', 'X', 'C'),
+        ('1b373733', 'X', 'Cook')
+    ])
+    def test_repeated_XOR(self, s, k, expected):
+        self.assertEqual(Utils.repeated_XOR(s, k), expected)

@@ -103,3 +103,11 @@ class Utils():
         """Convert a decimal number like 74
         """
         pass
+
+    @staticmethod
+    def repeated_XOR(s, k):
+        if s == '':
+            return ''
+        return ''.join(
+            [chr(int(y, 16) ^ ord(k)) for y in [''.join(x) for x in zip(s[0::2], s[1::2])]]
+            )
