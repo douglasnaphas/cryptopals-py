@@ -8,6 +8,23 @@ from set1.challenge2_fixed_XOR.s1c2 import S1C2
 # python -m set1.challenge3_1_byte_XOR_cipher.s1c3
 
 class S1C3():
+    @staticmethod
+    def repeated_XOR(s, k):
+        """Return s XOR'd with k, repeated.
+
+        Positional arguments:
+        s -- The string to XOR, hex-encoded, for example, '436f' means 'Co'
+        k -- The key to repeat and XOR against s, for example, 'X'
+
+        Examples:
+        # XOR '1b37373331363f', which encodes 'Cooking', with 'X'
+        repeated_XOR('1b37373331363f', 'X')
+        '1b37373331363f'
+
+        # Odd number of quartets, like 0xabc
+        """
+        return ""
+
     @classmethod
     def decipher_1_byte_XOR(cls, ctext):
         """Return a tuple containing the deciphered ctext, and the 1-byte key.
@@ -29,7 +46,6 @@ class S1C3():
         """ 
 
 def main():
-    print("Hello")
     # we will use S1C2.fixed_XOR(hex string, hex string)
 
     # get the input string as a number
@@ -37,7 +53,7 @@ def main():
     ctn = Utils.hexstr2num(ctext)
     
     # get the length of the input
-    ctlen = int(len(ctext) / 2)
+    ctlen = int(len(ctext) / 2) # / 2 because every 2 hexes is 1 8-bit char
 
     # get the set of possible key characters (one character each)
     FIRST_PRINTABLE_DEC = 32
@@ -49,12 +65,12 @@ def main():
     d = {cc : Utils.score_english(S1C2.fixed_XOR(ctext, hex(ord(chr(cc)))[2:])) for cc in candidate_chars}
 #    print(d)
 #    print(e)
-    f = {cc : hex(ord(chr(cc)))[2:] * ctlen for cc in candidate_chars}
-    for k, v in f.items():
-        print(k, ' : ', v)
+    # f = {cc : hex(ord(chr(cc)))[2:] * ctlen for cc in candidate_chars}
+    # for k, v in f.items():
+    #     print(k, ' : ', v)
     e = {cc : S1C2.fixed_XOR(ctext, hex(ord(chr(cc)))[2:] * ctlen) for cc in candidate_chars}
-    for k, v in e.items():
-        print(k, ' : ', v)
+    # for k, v in e.items():
+    #     print(k, ' : ', v)
     g = {k : bytes.fromhex(v).decode('utf-8') for k, v in e.items()}
     # exclude anything in the 
     print("new approach...")
