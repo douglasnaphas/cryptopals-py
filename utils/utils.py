@@ -45,6 +45,9 @@ class Utils():
         Optional keyword argument:
         spaces -- boolean, whether to consider spaces, default false
         """
+        for c in txt:
+            if c not in string.printable:
+                return 100 # return a bad score if there are any unprintable characters
         common_f = [
             ('a', .08129 ),
             ('b', .01485 ),
@@ -194,7 +197,7 @@ class Utils():
         candidate_chars = set(range(FIRST_PRINTABLE_DEC, LAST_PRINTABLE_DEC + 1))
         e = {cc : cls.repeated_XOR(ctext, chr(cc)) for cc in candidate_chars}
         loscore = 100
-        lokey = 'nothing'
+        lokey = 0
         loval = 'nothing'
         for k, v in e.items():
             try:
