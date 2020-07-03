@@ -23,12 +23,27 @@ class Utils():
         return math.ceil(n.bit_length() / 8)
 
     @classmethod
-    def score_english(cls, txt):
+    def score_english(cls, txt, spaces=False):
         """Return the Euclidean distance between txt and a vector representing
         the frequency of characters in English.
 
+        Lower numbers mean txt is more likely to be English.
+
+        Examples:
+        # should be True
+        score_english('This is some normal text in English') < score_english('zzzzqqqqqq')
+
+        # should be False
+        score_english('No, this is text with spaces', True) < score_english('ThisIsTextWithNoSpaces')
+
+        # should be True
+        score_english('With and without spaces') == score_english('WithAndWithoutSpaces')
+
         Positional argument:
         txt -- The string to score.
+
+        Optional keyword argument:
+        spaces -- boolean, whether to consider spaces, default false
         """
         common_f = [
             ('a', .08129 ),
@@ -58,31 +73,75 @@ class Utils():
             ('y', .01985 ),
             ('z', .00077 ),
         ]
-        v = numpy.array(list(map(lambda t: t[1], common_f)))
+        common_f_w_spaces = [
+            ("a",  0.0651738),
+            ("b",  0.0124248),
+            ("c",  0.0217339),
+            ("d",  0.0349835),
+            ("e",  0.1041442),
+            ("f",  0.0197881),
+            ("g",  0.0158610),
+            ("h",  0.0492888),
+            ("i",  0.0558094),
+            ("j",  0.0009033),
+            ("k",  0.0050529),
+            ("l",  0.0331490),
+            ("m",  0.0202124),
+            ("n",  0.0564513),
+            ("o",  0.0596302),
+            ("p",  0.0137645),
+            ("q",  0.0008606),
+            ("r",  0.0497563),
+            ("s",  0.0515760),
+            ("t",  0.0729357),
+            ("u",  0.0225134),
+            ("v",  0.0082903),
+            ("w",  0.0171272),
+            ("x",  0.0013692),
+            ("y",  0.0145984),
+            ("z",  0.0007836),
+            (" ",  0.1918182),
+        ]
+        f = common_f
+        # if spaces:
+        #     f = common_f
+        # else:
+        #     f = common_f_w_spaces
+        v = numpy.array(list(map(lambda t: t[1], f)))
         return numpy.linalg.norm(cls.str2ltrv(txt) - v)
 
-    # something based on
-    # functools.reduce(lambda beg, inc : beg + ord(inc), 'abcdefghijklmnopqrstuvwxyz', 0)
-    # and ascii_lowercase
-
-
-# function that gets the distance between two letter vectors, test with easy vectors
-
-# function that calls ^^^ with arg and common_f, use mocking to test that ^^^
-# was called with the right args
+    @classmethod
+    def best_XOR_key(cls, txt):
+        pass
 
     @staticmethod
-    def str2ltrv(s):
+    def str2ltrv(s, spaces=False):
         """"String to letter vector
-        ex: 'babB' -> [1, 3, 0, 0, 0, ... ]
+
+        Examples:
+        str2ltrv('babB') # [1, 3, 0, 0, 0, ...] length 26
+        str2ltrv('babB', True) # [1, 3, 0, 0, 0, ..., 0] length 27
+        str2ltrv('bab B', True) # [1, 3, 0, 0, 0, ..., 1] length 27
+        str2ltrv('bab B\t\nc', True) # [1, 3, 1, 0, 0, ..., 3] length 27
+
+        Positional argument:
+        s -- The string to convert to a letter vector
+
+        Optional keyword argument:
+        spaces -- boolean, whether to count spaces, default False
         """
         if not isinstance(s, str):
             raise Exception("str2ltrv: input must be a string")
+        alpha_len = 26
+        if spaces:
+            alpha_len = 27
         if len(s) == 0:
-            return numpy.array([0] * 26)
+            return numpy.array([0] * alpha_len)
         lowers = str.lower(s)
         d = dict(Counter(lowers).items())
         alpha = list(string.ascii_lowercase)
+        if(spaces):
+            alpha.append(' ')
         denom = functools.reduce(
             lambda beg, inc : (beg + 1) if inc.islower() else beg,
             lowers,
