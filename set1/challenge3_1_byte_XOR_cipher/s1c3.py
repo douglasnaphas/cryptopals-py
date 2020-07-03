@@ -69,6 +69,7 @@ def main():
     # for k, v in f.items():
     #     print(k, ' : ', v)
     e = {cc : S1C2.fixed_XOR(ctext, hex(ord(chr(cc)))[2:] * ctlen) for cc in candidate_chars}
+    # e = {cc : Utils.repeated_XOR(ctext, chr(cc)) for cc in candidate_chars}
     # for k, v in e.items():
     #     print(k, ' : ', v)
     g = {k : bytes.fromhex(v).decode('utf-8') for k, v in e.items()}
