@@ -60,9 +60,7 @@ def main():
     loval = 'nothing'
     for k, v in e.items():
         try:
-            score = Utils.score_english(v)
-            if score < 0.24:
-                print(k, " : ", score, " : ", v)
+            score = Utils.score_english(v, True)
             if score < loscore:
                 loscore = score
                 lokey = k

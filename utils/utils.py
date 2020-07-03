@@ -102,13 +102,12 @@ class Utils():
             ("z",  0.0007836),
             (" ",  0.1918182),
         ]
-        f = common_f
-        # if spaces:
-        #     f = common_f
-        # else:
-        #     f = common_f_w_spaces
+        if spaces:
+            f = common_f_w_spaces
+        else:
+            f = common_f
         v = numpy.array(list(map(lambda t: t[1], f)))
-        return numpy.linalg.norm(cls.str2ltrv(txt) - v)
+        return numpy.linalg.norm(cls.str2ltrv(txt, spaces) - v)
 
     @classmethod
     def best_XOR_key(cls, txt):
