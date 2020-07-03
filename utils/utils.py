@@ -110,7 +110,7 @@ class Utils():
             return ''
         return ''.join(
             [
-                chr(int(y, 16) ^ ord(k)) for i, y in
+                chr(int(y, 16) ^ ord(k[i % len(k)])) for i, y in
                 enumerate([''.join(x) for x in zip(s[0::2], s[1::2])])
             ]
             )
