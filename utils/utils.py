@@ -247,3 +247,16 @@ class Utils():
             lambda acc, curr: acc + curr,
             [cls.hd(ord(t[0]), ord(t[1])) for t in list(zip(s1, s2))]
         )
+    
+    @staticmethod
+    def buildStringFromTextIOWrapper(textIOWrapper):
+        """Iterate over the lines in textIOWrapper, concat them into a string
+        with no newlines
+
+        Required positional argument:
+        textIOWrapper -- Something that allows `for line in textIOWrapper`
+        """
+        s = ""
+        for line in textIOWrapper:
+            s = s + line.rstrip()
+        return s
