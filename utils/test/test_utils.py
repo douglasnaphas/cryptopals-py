@@ -178,3 +178,19 @@ class TestDecrypt1ByteXOR(unittest.TestCase):
     ])
     def test_decrypt_1_byte_XOR(self, ctext, expected):
         self.assertEqual(Utils.decrypt_1_byte_XOR(ctext), expected)
+
+class TestHD(unittest.TestCase):
+    @parameterized.expand([
+        (1, 1, 0),
+        (1, 0, 1),
+        (4, 11, 4)
+    ])
+    def test_hd(self, n1, n2, expected):
+        self.assertEqual(Utils.hd(n1, n2), expected)
+
+class TestHamming(unittest.TestCase):
+    @parameterized.expand([
+        ('this is a test', 'wokka wokka!!!', 37)
+    ])
+    def test_hamming(self, s1, s2, expected):
+        self.assertEqual(Utils.hamming(s1, s2), expected)

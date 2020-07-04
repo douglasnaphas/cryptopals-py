@@ -221,3 +221,29 @@ class Utils():
             except:
                 pass
         return (lokey, chr(lokey), loscore, loval)
+
+    @staticmethod
+    def hd(n1, n2):
+        s = 0
+        while n1 | n2:
+            s = int(s) + int(1 & (n1 ^ n2))
+            n1 = n1 >> 1
+            n2 = n2 >> 1
+        return s    
+    
+    @classmethod
+    def hamming(cls, s1, s2):
+        """"Return the Hamming distance (the number of bits that differ)
+        between s1 and s2.
+
+        For example:
+        hamming("this is a test", "wokka wokka!!!") # 37
+
+        Positional arguments:
+        s1 -- String
+        s2 -- String
+        """
+        return functools.reduce(
+            lambda acc, curr: acc + curr,
+            [cls.hd(ord(t[0]), ord(t[1])) for t in list(zip(s1, s2))]
+        )
