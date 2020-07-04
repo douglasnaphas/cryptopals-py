@@ -162,7 +162,14 @@ class Utils():
         pass
 
     @staticmethod
-    def repeated_XOR(s, k):
+    def repeated_XOR_decrypt(s, k):
+        """Decrypt a hex-encoded (no leading '0x') string by repeated XOR with k
+
+        Positional arguments:
+        s -- The string to decrypt, example '1b373733', which means
+            0001 1011 0011 0111 0011 0111 0011 0011
+        k -- The key to XOR s against, for example 'X', or 'Xyz'
+        """
         if s == '':
             return ''
         return ''.join(
@@ -191,7 +198,7 @@ class Utils():
         FIRST_PRINTABLE_DEC = 32
         LAST_PRINTABLE_DEC = 126
         candidate_chars = set(range(FIRST_PRINTABLE_DEC, LAST_PRINTABLE_DEC + 1))
-        e = {cc : cls.repeated_XOR(ctext, chr(cc)) for cc in candidate_chars}
+        e = {cc : cls.repeated_XOR_decrypt(ctext, chr(cc)) for cc in candidate_chars}
         loscore = 100
         lokey = 0
         loval = 'nothing'

@@ -156,8 +156,8 @@ class TestRepeatedXOR(unittest.TestCase):
         ('1b373733', 'XX', 'Cook'),
         ('1b373733', 'Xy', 'CNoJ'),
     ])
-    def test_repeated_XOR(self, s, k, expected):
-        self.assertEqual(Utils.repeated_XOR(s, k), expected)
+    def test_repeated_XOR_decrypt(self, s, k, expected):
+        self.assertEqual(Utils.repeated_XOR_decrypt(s, k), expected)
 
 class TestDecrypt1ByteXOR(unittest.TestCase):
     @parameterized.expand([
