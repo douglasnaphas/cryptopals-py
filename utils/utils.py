@@ -112,10 +112,6 @@ class Utils():
         v = numpy.array(list(map(lambda t: t[1], f)))
         return numpy.linalg.norm(cls.str2ltrv(txt, spaces) - v)
 
-    @classmethod
-    def best_XOR_key(cls, txt):
-        pass
-
     @staticmethod
     def str2ltrv(s, spaces=False):
         """"String to letter vector
