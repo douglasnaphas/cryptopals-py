@@ -179,6 +179,15 @@ class Utils():
             ]
             )
     
+    @staticmethod
+    def repeated_XOR_encrypt(s, k, llen=75):
+        """Encrypt a plaintext string by repeat-XOR-ing it with k, hex-encode
+        the outcome
+        """
+        if s == '':
+            return ''
+        return ''.join(list(map(lambda x: hex(x)[2:] if x > 16 else '0' + hex(x)[2:], [ord(c) ^ ord(k[i % len(k)]) for i, c in enumerate(s)])))
+    
     @classmethod
     def decrypt_1_byte_XOR(cls, ctext):
         """Decrypt a hex-encoded string encrypted with a single-byte XOR

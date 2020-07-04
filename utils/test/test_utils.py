@@ -148,7 +148,7 @@ class TestHexstr2num(unittest.TestCase):
     def test_hexstr2num(self, hexstr, expected):
         self.assertEqual(Utils.hexstr2num(hexstr), expected)
 
-class TestRepeatedXOR(unittest.TestCase):
+class TestRepeatedXORDecrypt(unittest.TestCase):
     @parameterized.expand([
         ('', '', ''),
         ('1b', 'X', 'C'),
@@ -158,6 +158,15 @@ class TestRepeatedXOR(unittest.TestCase):
     ])
     def test_repeated_XOR_decrypt(self, s, k, expected):
         self.assertEqual(Utils.repeated_XOR_decrypt(s, k), expected)
+
+class TestRepeatedXOREncrypt(unittest.TestCase):
+    @parameterized.expand([
+        ('', '', ''),
+        ('B', 'I', '0b'),
+        ("Burning 'em, if you ain't quick", 'ICE', '0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a2622')
+    ])
+    def test_repeated_XOR_decrypt(self, s, k, expected):
+        self.assertEqual(Utils.repeated_XOR_encrypt(s, k), expected)
 
 class TestDecrypt1ByteXOR(unittest.TestCase):
     @parameterized.expand([
