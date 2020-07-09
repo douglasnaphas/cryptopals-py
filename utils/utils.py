@@ -3,6 +3,7 @@ import numpy
 import string
 from collections import Counter
 import functools
+import base64
 
 class Utils():
     
@@ -260,3 +261,7 @@ class Utils():
         for line in textIOWrapper:
             s = s + line.rstrip()
         return s
+    
+    @staticmethod
+    def b64toInt(b64):
+        return int.from_bytes(base64.b64decode(b64), 'big')

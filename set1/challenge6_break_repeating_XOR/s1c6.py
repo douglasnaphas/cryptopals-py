@@ -9,7 +9,13 @@ def main():
                         help='the key to encrypt with')
     args = parser.parse_args()
     ct = Utils.buildStringFromTextIOWrapper(sys.stdin)
-    print(ct)
+    MIN_KEYSIZE = 2
+    MAX_KEYSIZE = 8
+    # need to convert the input string to a number
+    # maybe get a byte array?
+
+    hds = {ks: Utils.hamming(ct[0:ks], ct[ks:2 * ks]) for ks in range(MIN_KEYSIZE, MAX_KEYSIZE + 1)}
+    print(hds)
 
 if __name__ == "__main__":
     main()

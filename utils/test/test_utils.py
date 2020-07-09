@@ -215,3 +215,12 @@ class TestBuildStringFromTextIOWrapper(unittest.TestCase):
     ])
     def test_buildStringFromTextIOWrapper(self, textIOWrapper, expected):
         self.assertEqual(Utils.buildStringFromTextIOWrapper(textIOWrapper), expected)
+
+class TestB64ToInt(unittest.TestCase):
+    @parameterized.expand([
+        ('AAAA', 0),
+        ('AAAB', 1),
+        ('AAAC', 2)
+    ])
+    def test_b64toInt(self, b64, expected):
+        self.assertEqual(Utils.b64toInt(b64), expected)
