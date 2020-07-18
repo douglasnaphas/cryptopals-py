@@ -230,7 +230,7 @@ class Utils():
             s = int(s) + int(1 & (n1 ^ n2))
             n1 = n1 >> 1
             n2 = n2 >> 1
-        return s    
+        return s
     
     @classmethod
     def hamming(cls, s1, s2):
@@ -247,6 +247,25 @@ class Utils():
         return functools.reduce(
             lambda acc, curr: acc + curr,
             [cls.hd(ord(t[0]), ord(t[1])) for t in list(zip(s1, s2))]
+        )
+
+    @classmethod
+    def hamming_bytearray(cls, ba1, ba2):
+        """"Return the Hamming distance (the number of bits that differ)
+        between bytearrays ba1 and ba2.
+
+        For example:
+        hamming("this is a test", "wokka wokka!!!") # 37
+
+        Positional arguments:
+        ba1 -- bytearray
+        ba2 -- bytearray
+
+
+        """
+        return functools.reduce(
+            lambda acc, curr: acc + curr,
+            [cls.hd(t[0], t[1]) for t in list(zip(ba1, ba2))]
         )
     
     @staticmethod

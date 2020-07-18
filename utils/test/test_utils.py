@@ -189,11 +189,31 @@ class TestHD(unittest.TestCase):
         self.assertEqual(Utils.hd(n1, n2), expected)
 
 class TestHamming(unittest.TestCase):
+    dee = 'D'
+    ee = 'E'
     @parameterized.expand([
-        ('this is a test', 'wokka wokka!!!', 37)
+        ('this is a test', 'wokka wokka!!!', 37),
+        ('D', 'E', 1),
+        (dee, ee, 1),
+        ('Hcr)x', 'cHrtx', 13)
     ])
     def test_hamming(self, s1, s2, expected):
         self.assertEqual(Utils.hamming(s1, s2), expected)
+
+class TestHammingBytearray(unittest.TestCase):
+    cd_bytes = bytearray()
+    cd_bytes.extend(map(ord, 'cd'))
+    rv_bytes = bytearray()
+    rv_bytes.extend(map(ord, 'rv'))
+    @parameterized.expand([
+        (b'this is a test', b'wokka wokka!!!', 37),
+        ([1], [2], 2),
+        (b'D', b'E', 1),
+        (b'Hcr)x', b'cHrtx', 13),
+        (cd_bytes, rv_bytes, 4)
+    ])
+    def test_hamming_bytearray(self, ba1, ba2, expected):
+        self.assertEqual(Utils.hamming_bytearray(ba1, ba2), expected)
 
 class TestBuildStringFromTextIOWrapper(unittest.TestCase):
     @parameterized.expand([
