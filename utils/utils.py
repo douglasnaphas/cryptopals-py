@@ -282,3 +282,12 @@ class Utils():
     @staticmethod
     def b64toInt(b64):
         return int.from_bytes(base64.b64decode(b64), 'big')
+    
+    @staticmethod
+    def b64_to_bytearray(b64):
+        return bytearray(base64.b64decode(b64))
+
+    @classmethod
+    def hdist_by_ksize(cls, s, keylens, npairs=1):
+        ct = cls.b64_to_bytearray(s)
+        return {ks: cls.hamming_bytearray(ct[0:ks], ct[ks:2 * ks]) / ks for ks in keylens}

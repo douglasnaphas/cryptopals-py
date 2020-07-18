@@ -244,3 +244,19 @@ class TestB64ToInt(unittest.TestCase):
     ])
     def test_b64toInt(self, b64, expected):
         self.assertEqual(Utils.b64toInt(b64), expected)
+
+class TestB64ToBytearray(unittest.TestCase):
+    @parameterized.expand([
+        ('AAAA', bytearray([0, 0, 0])),
+        ('AAAB', bytearray([0, 0, 1])),
+        ('AAAC', bytearray([0, 0, 2]))
+    ])
+    def test_b64_to_bytearray(self, b64, expected):
+        self.assertEqual(Utils.b64_to_bytearray(b64), expected)
+
+class TestHdistByKsize(unittest.TestCase):
+    @parameterized.expand([
+        ('HUIfTQsP', [2, 3], 1, {2: 5 / 2, 3: 6 / 3})
+    ])
+    def test_hdist_by_ksize(self, s, keylens, npairs, expected):
+        self.assertEqual(Utils.hdist_by_ksize(s, keylens, npairs), expected)
