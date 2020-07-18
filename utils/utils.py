@@ -255,13 +255,11 @@ class Utils():
         between bytearrays ba1 and ba2.
 
         For example:
-        hamming("this is a test", "wokka wokka!!!") # 37
+        hamming(b'this is a test', b'wokka wokka!!!') # 37
 
         Positional arguments:
         ba1 -- bytearray
         ba2 -- bytearray
-
-
         """
         return functools.reduce(
             lambda acc, curr: acc + curr,
