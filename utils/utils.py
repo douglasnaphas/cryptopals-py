@@ -291,7 +291,11 @@ class Utils():
     def hdist_by_ksize(cls, s, keylens, npairs=1):
         ct = cls.b64_to_bytearray(s)
         hbk = {}
-        # return {ks: cls.hamming_bytearray(ct[0:ks], ct[ks:2 * ks]) / ks for ks in keylens}
         for ks in keylens:
-            hbk[ks] = cls.hamming_bytearray(ct[0:ks], ct[ks:2 * ks]) / ks
+            for n in range(npairs):
+                hbk[ks] = hbk.get(ks, 0) + cls.hamming_bytearray(      # increment the total distance, then divide by ks and npairs outside
+                    ct[ks * 2 * n: ks * (2 * n + 1)], # the loops
+                    ct[ks * (2 * n + 1):ks * (2 * n + 2)]
+                ) / ks
+            hbk[ks] = hbk[ks] / npairs
         return hbk

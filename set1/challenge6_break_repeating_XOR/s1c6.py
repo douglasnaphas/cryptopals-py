@@ -14,10 +14,10 @@ def main():
     cs = Utils.buildStringFromTextIOWrapper(sys.stdin)
     MIN_KEYSIZE = 2
     MAX_KEYSIZE = 40
-    hds = Utils.hdist_by_ksize(cs, list(range(MIN_KEYSIZE, MAX_KEYSIZE + 1)))
+    hds = Utils.hdist_by_ksize(cs, list(range(MIN_KEYSIZE, MAX_KEYSIZE + 1)), 2)
     # print(hds)
     for k, v in hds.items():
-        print(k, '->', v) if v < 2.6 else False
+        print(k, '->', v) if v < 3 else False
 
 if __name__ == "__main__":
     main()
