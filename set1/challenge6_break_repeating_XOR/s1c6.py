@@ -12,12 +12,12 @@ def main():
                         help='the key to encrypt with') # might not need this
     args = parser.parse_args()
     cs = Utils.buildStringFromTextIOWrapper(sys.stdin)
-    ct = Utils.b64_to_bytearray(cs)
     MIN_KEYSIZE = 2
     MAX_KEYSIZE = 40
-    hds = {ks: Utils.hamming_bytearray(ct[0:ks], ct[ks:2 * ks]) for ks in range(MIN_KEYSIZE, MAX_KEYSIZE + 1)}
     hds = Utils.hdist_by_ksize(cs, list(range(MIN_KEYSIZE, MAX_KEYSIZE + 1)))
-    print(hds)
+    # print(hds)
+    for k, v in hds.items():
+        print(k, '->', v) if v < 2.6 else False
 
 if __name__ == "__main__":
     main()

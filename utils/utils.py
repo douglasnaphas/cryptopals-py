@@ -290,4 +290,8 @@ class Utils():
     @classmethod
     def hdist_by_ksize(cls, s, keylens, npairs=1):
         ct = cls.b64_to_bytearray(s)
-        return {ks: cls.hamming_bytearray(ct[0:ks], ct[ks:2 * ks]) / ks for ks in keylens}
+        hbk = {}
+        # return {ks: cls.hamming_bytearray(ct[0:ks], ct[ks:2 * ks]) / ks for ks in keylens}
+        for ks in keylens:
+            hbk[ks] = cls.hamming_bytearray(ct[0:ks], ct[ks:2 * ks]) / ks
+        return hbk
