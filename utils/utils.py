@@ -190,7 +190,7 @@ class Utils():
         return ''.join(list(map(lambda x: hex(x)[2:] if x > 16 else '0' + hex(x)[2:], [ord(c) ^ ord(k[i % len(k)]) for i, c in enumerate(s)])))
     
     @classmethod
-    def decrypt_1_byte_XOR(cls, ctext):
+    def decrypt_1_byte_XOR(cls, ctext, spaces=True):
         """Decrypt a hex-encoded string encrypted with a single-byte XOR
 
         Return a tuple containing:
@@ -209,17 +209,18 @@ class Utils():
         LAST_PRINTABLE_DEC = 126
         candidate_chars = set(range(FIRST_PRINTABLE_DEC, LAST_PRINTABLE_DEC + 1))
         e = {cc : cls.repeated_XOR_decrypt(ctext, chr(cc)) for cc in candidate_chars}
-        loscore = 100
+        loscore = 10000
         lokey = 0
         loval = 'nothing'
         for k, v in e.items():
             try:
-                score = cls.score_english(v, True)
+                score = cls.score_english(v, spaces)
                 if score < loscore:
                     loscore = score
                     lokey = k
                     loval = v
             except:
+                print('problem')
                 pass
         return (lokey, chr(lokey), loscore, loval)
 

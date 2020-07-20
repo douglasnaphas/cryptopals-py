@@ -36,10 +36,9 @@ def main():
         print(hds_sorted[0][0])
     keysize = keysize or hds_sorted[0][0]
 
-
     b = Utils.blocks(cs, keysize)
-    print(b[0])
-    print(b[1])
+    tb = Utils.transpose_blocks(b)
+    print(''.join([Utils.decrypt_1_byte_XOR(x.hex(), False)[1] for x in tb]))
 
 
 if __name__ == "__main__":
