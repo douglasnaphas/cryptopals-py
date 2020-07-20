@@ -285,3 +285,22 @@ class TestBlocks(unittest.TestCase):
     ])
     def test_blocks(self, s, keysize, expected):
         self.assertEqual(Utils.blocks(s, keysize), expected)
+
+class TestTransposeBlocks(unittest.TestCase):
+    @parameterized.expand([
+        (
+            [
+                b'\x00\x00\x00',
+                b'\x00\x00\x01',
+                b'\x00\x00\x05',
+                b'\x00\x00\x02',
+            ],
+            [
+                b'\x00\x00\x00\x00',
+                b'\x00\x00\x00\x00',
+                b'\x00\x01\x05\x02'
+            ]
+        )
+    ])
+    def test_transpose_blocks(self, b, expected):
+        self.assertEqual(Utils.transpose_blocks(b), expected)

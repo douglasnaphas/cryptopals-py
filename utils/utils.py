@@ -307,3 +307,12 @@ class Utils():
         """
         b = cls.b64_to_bytearray(s)
         return [b[n * keysize:(n + 1) * keysize] for n in range(int(len(b) / keysize))]
+
+    @classmethod
+    def transpose_blocks(cls, b):
+        """Return a block that is the first byte of every block in b, a block
+        that is the second byte of every block in b, etc.
+        """
+        if len(b) == 0:
+            return []
+        return [bytearray([x[i] for x in b]) for i in range(len(b[0]))]
