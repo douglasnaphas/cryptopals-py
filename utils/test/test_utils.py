@@ -269,3 +269,19 @@ class TestHdistByKsize(unittest.TestCase):
     ])
     def test_hdist_by_ksize(self, s, keylens, npairs, expected):
         self.assertEqual(Utils.hdist_by_ksize(s, keylens, npairs), expected)
+
+class TestBlocks(unittest.TestCase):
+    @parameterized.expand([
+        (
+            'AAAA' + 'AAAB' + 'AAAF' + 'AAAC',
+            3,
+            [
+                b'\x00\x00\x00',
+                b'\x00\x00\x01',
+                b'\x00\x00\x05',
+                b'\x00\x00\x02',
+            ]
+        )
+    ])
+    def test_blocks(self, s, keysize, expected):
+        self.assertEqual(Utils.blocks(s, keysize), expected)

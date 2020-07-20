@@ -299,3 +299,11 @@ class Utils():
                 ) / ks
             hbk[ks] = hbk[ks] / npairs
         return hbk
+
+    @classmethod
+    def blocks(cls, s, keysize):
+        """Return a list of bytearrays of length keysize consisting of the bytes
+        from string s.
+        """
+        b = cls.b64_to_bytearray(s)
+        return [b[n * keysize:(n + 1) * keysize] for n in range(int(len(b) / keysize))]
