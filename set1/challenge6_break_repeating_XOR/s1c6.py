@@ -38,7 +38,9 @@ def main():
 
     b = Utils.blocks(cs, keysize)
     tb = Utils.transpose_blocks(b)
-    print(''.join([Utils.decrypt_1_byte_XOR(x.hex(), False)[1] for x in tb]))
+    key = ''.join([Utils.decrypt_1_byte_XOR(x.hex(), False)[1] for x in tb])
+    print(key)
+    print(Utils.repeated_XOR_decrypt(Utils.b64_to_bytearray(cs).hex(), key))
 
 
 if __name__ == "__main__":
