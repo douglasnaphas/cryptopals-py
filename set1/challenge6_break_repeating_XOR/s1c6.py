@@ -1,5 +1,5 @@
 # run with:
-# cat set1/challenge6_break_repeating_XOR/6.txt | python -m set1.challenge6_break_repeating_XOR.s1c6
+# cat set1/challenge6_break_repeating_XOR/6.txt | python -m set1.challenge6_break_repeating_XOR.s1c6 --npairs 12
 
 import argparse
 import functools
