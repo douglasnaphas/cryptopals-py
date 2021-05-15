@@ -177,7 +177,17 @@ class TestDecrypt1ByteXOR(unittest.TestCase):
         (88, 'X', 0.22531424758579757, 'Cooking MC\'s like a pound of bacon'))
     ])
     def test_decrypt_1_byte_XOR(self, ctext, expected):
-        self.assertEqual(Utils.decrypt_1_byte_XOR(ctext), expected)
+        result = Utils.decrypt_1_byte_XOR(ctext)
+        self.assertEqual(result[0], expected[0])
+        self.assertEqual(result[1], expected[1])
+        self.assertEqual(result[3], expected[3])
+        if expected[2] != 0:
+            e = abs(expected[2] - result[2])
+            r = e / expected[2]
+            acceptable_error = 0.01
+            self.assertLessEqual(r, acceptable_error)
+        if expected[2] == 0:
+            assertEqual(result[2], expected[2])
 
 class TestHD(unittest.TestCase):
     @parameterized.expand([
