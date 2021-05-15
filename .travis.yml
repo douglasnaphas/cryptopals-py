@@ -5,4 +5,4 @@ install:
   - pip install poetry
   - poetry install
 script:
-  - python -m unittest
+  - poetry run python -m unittest
