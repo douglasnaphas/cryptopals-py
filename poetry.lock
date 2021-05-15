@@ -1,25 +1,25 @@
 [[package]]
-category = "main"
-description = "NumPy is the fundamental package for array computing with Python."
 name = "numpy"
+version = "1.20.3"
+description = "NumPy is the fundamental package for array computing with Python."
+category = "main"
 optional = false
 python-versions = ">=3.7"
-version = "1.20.3"
 
 [[package]]
-category = "main"
-description = "Parameterized testing with any Python test framework"
 name = "parameterized"
+version = "0.7.5"
+description = "Parameterized testing with any Python test framework"
+category = "main"
 optional = false
 python-versions = "*"
-version = "0.7.5"
 
 [package.extras]
 dev = ["jinja2"]
 
 [metadata]
-content-hash = "7184e2b6cd867efcf9b87aa7f4dd8bd0e1b0e1b6cb4f7c1661f14e924adc972d"
-python-versions = "^3.7"
+python-versions = "^3.9"
+content-hash = "80492beebe34ebf8edc5281f246528156875eb53fbdc017dff65c69f6d337ac1"
 
 [metadata.files]
 numpy = [
