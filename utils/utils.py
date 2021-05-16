@@ -226,6 +226,8 @@ class Utils():
 
     @staticmethod
     def hd(n1, n2):
+       """Return the Hamming distance between two integers n1 and n2.
+       """
         s = 0
         while n1 | n2:
             s = int(s) + int(1 & (n1 ^ n2))
