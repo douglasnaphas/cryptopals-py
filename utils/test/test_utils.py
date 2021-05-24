@@ -250,7 +250,8 @@ class TestB64ToInt(unittest.TestCase):
     @parameterized.expand([
         ('AAAA', 0),
         ('AAAB', 1),
-        ('AAAC', 2)
+        ('AAAC', 2),
+        ('AAA\nB', 1)
     ])
     def test_b64toInt(self, b64, expected):
         self.assertEqual(Utils.b64toInt(b64), expected)
