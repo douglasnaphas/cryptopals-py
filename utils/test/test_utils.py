@@ -187,7 +187,7 @@ class TestDecrypt1ByteXOR(unittest.TestCase):
             acceptable_error = 0.01
             self.assertLessEqual(r, acceptable_error)
         if expected[2] == 0:
-            assertEqual(result[2], expected[2])
+            self.assertEqual(result[2], expected[2])
 
 class TestHD(unittest.TestCase):
     @parameterized.expand([
