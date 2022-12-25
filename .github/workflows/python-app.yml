@@ -34,4 +34,8 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with unittest
       run: |
+        pip install virtualenv
+        virtualenv -p $(which python) venv
+        . venv/bin/activate
+        poetry install
         python -m unittest
