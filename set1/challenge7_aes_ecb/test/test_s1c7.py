@@ -16,5 +16,4 @@ class TestDecryptingFiles(unittest.TestCase):
         exfile = open(exfile_name, 'r')
         expected = exfile.read()
         exfile.close()
-
-
+        self.assertEqual(S1C7.s1c7(ciphertext), expected)
