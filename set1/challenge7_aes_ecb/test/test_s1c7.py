@@ -8,8 +8,13 @@ class TestDecryptingFiles(unittest.TestCase):
         ('set1/challenge7_aes_ecb/test/7.txt',
          'set1/challenge7_aes_ecb/test/7.decrypted.txt')
     ])
-    def test_decrypting_files(self, infile, outfile):
+    def test_decrypting_files(self, infile_name, exfile_name):
         self.assertEqual('a', 'a')
-        f = open(infile, 'r')
-        ciphertext = f.read()
-        f.close()
+        infile = open(infile_name, 'r')
+        ciphertext = infile.read()
+        infile.close()
+        exfile = open(exfile_name, 'r')
+        expected = exfile.read()
+        exfile.close()
+
+
