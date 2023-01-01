@@ -2,6 +2,8 @@ import unittest
 from parameterized import parameterized
 from set1.challenge7_aes_ecb.s1c7 import S1C7
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.primitives import padding
+import base64
 
 
 class TestDecryptingFiles(unittest.TestCase):
@@ -21,9 +23,25 @@ class TestDecryptingFiles(unittest.TestCase):
         key = bytes.fromhex('YELLOW SUBMARINE'.encode('utf-8').hex())
         cipher = Cipher(algorithms.AES(key), modes.ECB())
         encryptor = cipher.encryptor()
-        ct = encryptor.update(ciphertext.encode("utf-8")) + encryptor.finalize()
+        ct = encryptor.update(bytes(ciphertext.encode("utf-8"))) + encryptor.finalize()
         decryptor = cipher.decryptor()
         result = decryptor.update(ct) + decryptor.finalize()
-        print(ciphertext)
-        print(ct)
-        print(result)
+        # print(ciphertext)
+        # print(ct)
+        # print(result)
+        key2 = bytes.fromhex('YELLOW SUBMARINE'.encode('utf-8').hex())
+        # print(key2)
+        cipher2 = Cipher(algorithms.AES(key), modes.ECB())
+        encryptor2 = cipher.encryptor()
+        message2 = expected
+        # print(message2)
+        message_bytes2 = bytes(message2.encode("utf-8"))
+        # print(message_bytes2)
+        padder2 = padding.PKCS7(128).padder()
+        padded_message_bytes2_except_last_byte = padder2.update(message_bytes2)
+        padded_message_bytes2 = padded_message_bytes2_except_last_byte + padder2.finalize()
+        # print(padded_message_bytes2)
+        ct2 = encryptor2.update(padded_message_bytes2) + encryptor2.finalize()
+        # print(ct2)
+        ct2b64 = base64.b64encode(ct2)
+        print(ct2b64)
