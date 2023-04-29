@@ -16,7 +16,7 @@ venv: $(VENV)/bin/activate
 
 test: venv
 	. $(VENV)/bin/activate; \
-	pytest
+	python -m unittest
 
 run: venv
 	./$(VENV)/bin/python3 app.py
