@@ -1,7 +1,7 @@
 # cryptopals-python
 Solutions to https://cryptopals.com/ in Python.
 
-## Setup
+## Usage
 
 ### Get pyenv
 Install [pyenv](https://github.com/pyenv/pyenv#installation) to manage your
@@ -18,20 +18,6 @@ To setup, for example, Python 3.8.0, in the current shell, do:
     pyenv install 3.8.0
     pyenv shell 3.8.0
 
-### Create and activate virtualenv
+### Run tests
 
-    pip install virtualenv
-    virtualenv -p $(which python) venv
-    . venv/bin/activate
-
-### Install poetry
-Install [poetry](https://pypi.org/project/poetry/) to manage dependencies.
-
-### Install dependencies
-
-    poetry install
-
-## Run tests
-
-    python -m unittest # run all tests
-    python -m unittest utils.test.test_utils.TestNby # run a specific class
+    make clean && make install && make test
