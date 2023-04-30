@@ -44,4 +44,17 @@ class TestDecryptingFiles(unittest.TestCase):
         ct2 = encryptor2.update(padded_message_bytes2) + encryptor2.finalize()
         # print(ct2)
         ct2b64 = base64.b64encode(ct2)
-        print(ct2b64)
+        # print(ct2b64)
+
+    @parameterized.expand([
+        ('set1/challenge7_aes_ecb/test/7.txt',
+         'set1/challenge7_aes_ecb/test/7.decrypted.txt'),
+         ('set1/challenge7_aes_ecb/test/7b.txt',
+         'set1/challenge7_aes_ecb/test/7b.decrypted.txt')
+    ])
+    def test_decrypting_files2(self, infile_name, exfile_name):
+        with open(infile_name, 'r') as infile:
+            encrypted_text = infile.read()
+        with open(exfile_name, 'r') as exfile:
+            expected_decrypted_text = exfile.read()
+        self.assertEqual(S1C7.s1c7(encrypted_text), expected_decrypted_text)
