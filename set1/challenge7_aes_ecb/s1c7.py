@@ -1,6 +1,6 @@
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import padding
-import base64
+import base64, string
 
 class S1C7:
     @staticmethod
@@ -90,7 +90,9 @@ class S1C7:
         cipher = Cipher(algorithms.AES(key), modes.ECB())
         decryptor = cipher.decryptor()
         result = decryptor.update(base64.b64decode(ciphertext.encode('ascii'))) + decryptor.finalize()
-        return result
+        printable = set(string.printable)
+        r2 = ''.join(filter(lambda x: x in printable, result.decode('ascii')))
+        return r2
 
 
 def main():
