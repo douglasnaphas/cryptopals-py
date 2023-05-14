@@ -319,3 +319,19 @@ class Utils():
         if len(b) == 0:
             return []
         return [bytearray([x[i] for x in b]) for i in range(len(b[0]))]
+
+    @classmethod
+    def detect_duplicate_blocks(cls, strs, block_size):
+        """Given a list of strings in strs, return any entries that have
+        duplicate blocks of size block_size.
+        """
+        strs_w_dups = []
+        for s in strs:
+            blocks = [s[beg:beg + block_size] for beg in range(0, len(s), block_size)]
+            block_set = set()
+            for b in blocks:
+                if b in block_set:
+                    strs_w_dups.append(s)
+                    break
+                block_set.add(b)
+        return strs_w_dups
