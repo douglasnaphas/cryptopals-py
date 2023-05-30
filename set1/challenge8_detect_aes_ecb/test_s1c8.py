@@ -12,7 +12,7 @@ class TestDetectingAESECB(unittest.TestCase):
         )
         block_size = 16
         ecb_mode_ciphertexts = Utils.detect_duplicate_blocks(ciphertexts, block_size)
-        self.assertEquals(len(ecb_mode_ciphertexts), 1)
+        self.assertEqual(len(ecb_mode_ciphertexts), 1)
         the_answer = ecb_mode_ciphertexts[0]
         # Split the answer into size 16 blocks. There should be duplicates.
         blocks = [
