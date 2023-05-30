@@ -335,3 +335,13 @@ class Utils():
                     break
                 block_set.add(b)
         return strs_w_dups
+
+    @classmethod
+    def pad(cls, s, l):
+        """Given a string s, return s padded to length l in bytes. pad("YELLOW SUBMARINE") == "YELLOW SUBMARINE\x04\x04\x04\x04".
+        """
+        PAD_CHAR = "\x04"
+        padded = s
+        while len(padded) < l:
+            padded += PAD_CHAR
+        return padded
