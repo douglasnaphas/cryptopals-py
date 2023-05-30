@@ -6,7 +6,7 @@ from utils.utils import Utils
 class TestS2C9(unittest.TestCase):
     @parameterized.expand(
         [
-            ("YELLOW SUBMARINEs", 20, "YELLOW SUBMARINE\x04\x04\x04\x04"),
+            ("YELLOW SUBMARINE", 20, "YELLOW SUBMARINE\x04\x04\x04\x04"),
             ("YELLOW SUBMARINE", 17, "YELLOW SUBMARINE\x04")
         ]
     )
