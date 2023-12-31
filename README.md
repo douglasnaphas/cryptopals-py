@@ -11,12 +11,12 @@ Python versions.
 Do `pyenv install --list` to see available Python versions.
 
 This project has a `pyproject.toml` file that sets a required Python version
-range of ^3.7.
+range of ^3.9.
 
-To setup, for example, Python 3.8.0, in the current shell, do:
+To setup, for example, Python 3.9.0, in the current shell, do:
 
-    pyenv install 3.8.0
-    pyenv shell 3.8.0
+    pyenv install 3.9.0
+    pyenv shell 3.9.0
 
 ### Run tests
 
